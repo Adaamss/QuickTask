@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.*.local
+
+# Logs
+*.log
+
+# Build output (if using TypeScript or bundlers)
+dist/
+coverage/
+
+# IDE/editor stuff
+.vscode/
+.idea/
+.DS_Store
