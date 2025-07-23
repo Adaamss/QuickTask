@@ -23,7 +23,7 @@ const getOneWorkout = async(req,res)=>{
 
 //create a new workout
 const createWorkout = async(req, res) =>{
-     const {title,load,reps} = req.body
+     const {title,load,reps} = req.body // a3tni title wel load w reps li fi request mel client aka l postman
     try {
         const workout = await Workout.create( {title,load,reps})
         res.status(200).json(workout)
@@ -38,7 +38,7 @@ const updateWorkout = async(req,res)=>{
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error : 'No such workout exist'})
     }
-    const workout =await Workout.findOneAndUpdate({_id: id}, {...req.body}, {new: true,})
+    const workout =await Workout.findOneAndUpdate({_id: id}, {...req.body}, {new: true})
     if (!workout) {
      return res.status(404).json({error :'no such workout exists'})
     }
@@ -48,7 +48,7 @@ const updateWorkout = async(req,res)=>{
  
 //delete a workout
 const deleteWorkout = async(req,res)=>{
-        const {id} = req.params 
+        const {id} = req.params  // hedhouma les fil requets li be3thha li client as IN a3tini l id li fi request 7achti beha
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error : 'No such workout exist'})
     }
