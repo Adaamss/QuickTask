@@ -7,14 +7,14 @@ const Home = () => {
         const fetchWorkout = async () => {
             const response = await fetch('/api/workouts/') // by default it's GET so we don't do shit leave it to beaver
             const json = await response.json()
-            console.log("this is teh resp", response)
+            console.log("this is the resp", response)
             console.log(json)
             if (response.ok) {
                 setWorkouts(json)
             }
         }
         fetchWorkout()
-    }, [])
+    }, [workouts]) // watch dog if the wrokouts changes after Post new ones it rerenders !!
     return (
         <div className="home">
             <div className="workouts">
