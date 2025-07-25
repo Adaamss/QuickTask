@@ -6,34 +6,34 @@ const WorkoutForm = () => {
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
     const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(false)
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const workout = { title, load, reps } // we will be sing the fetch to POST
-        const response = await fetch('/api/workout', {
+        const response = await fetch('/api/workouts', {
             method: 'POST',
-            body: JSON.stringify({ workout }), // we can't send it as an object we have to change to json
+            body: JSON.stringify(workout), // we can't send it as an object we have to change to json
             headers: {
                 'Content-Type': 'application/json'
             }
         }
         )
-        const json = response.json()
+        const json = await response.json()
         if (!response.ok) {
             setError(json.error)
         }
         if (response.ok) {
+            setTitle('')
+            setLoad('')
+            setReps('')
             setError(null)
+            setSuccess(true)
             console.log('new workout Added', json)
         }
     }
 
-    const handleReset = () => {
-        setTitle('')
-        setLoad('')
-        setReps('')
-    } // resets all fields to '' after clickign the btn to add the workout
 
 
     return (
@@ -56,7 +56,8 @@ const WorkoutForm = () => {
                 onChange={(e) => setReps(e.target.value)}
                 value={reps}
             />
-            <button onClick={handleReset}>Add the workout</button>
+            <button>Add the workout</button>
+            {error ? <div> {error}</div> : success && <div>Workout added succsefully</div>}
         </form>
 
     )
