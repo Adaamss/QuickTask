@@ -4,17 +4,18 @@ import WorkoutForm from "../components/WorkoutForm"
 const Home = () => {
     const [workouts, setWorkouts] = useState(null)
     useEffect(() => {
+        console.log('useEffect triggered. Current workouts:', workouts);
+
         const fetchWorkout = async () => {
             const response = await fetch('/api/workouts/') // by default it's GET so we don't do shit leave it to beaver
             const json = await response.json()
-            console.log("this is the resp", response)
-            console.log(json)
             if (response.ok) {
+                console.log('Setting workouts state with:', json);
                 setWorkouts(json)
             }
         }
         fetchWorkout()
-    }, [workouts]) // watch dog if the wrokouts changes after Post new ones it rerenders !!
+    }, []) //bug fix workouts changes every re-render[workouts]when workouts changes use effects triggers =>  workouts changes over and over with new data => triggering +oo 
     return (
         <div className="home">
             <div className="workouts">
