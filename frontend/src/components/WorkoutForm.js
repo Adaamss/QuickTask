@@ -57,7 +57,7 @@ const WorkoutForm = () => {
                 value={reps}
             />
             <button>Add the workout</button>
-            {error ? <div> {error}</div> : success && <div>Workout added succsefully</div>}
+            {error ? <div className="error"> {error}</div> : success && <div className="succces">Workout added succsefully</div>}
         </form>
 
     )

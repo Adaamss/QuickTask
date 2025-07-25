@@ -109,3 +109,16 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+
+div.succces {
+  padding: 10px 15px;
+  background-color: #e6f4ea;
+  /* light green background */
+  border: 1px solid #26b303;
+  /* vivid green border */
+  color: #1a6602;
+  /* dark green text for readability */
+  border-radius: 5px;
+  margin: 20px 0;
+  font-weight: 500;
+}
