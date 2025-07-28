@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
 import WorkoutDetails from "../components/WorkoutsDetails"
 import WorkoutForm from "../components/WorkoutForm"
-const Home = () => {
-    const [workouts, setWorkouts] = useState(null)
-    useEffect(() => {
-        console.log('useEffect triggered. Current workouts:', workouts);
+import { useWorokoutsContext } from "../hooks/useWorkoutsContext"
 
+const Home = () => {
+    const { workouts, dispatch } = useWorokoutsContext()
+    // const [workouts, setWorkouts] = useState(null)
+    useEffect(() => {
         const fetchWorkout = async () => {
             const response = await fetch('/api/workouts/') // by default it's GET so we don't do shit leave it to beaver
             const json = await response.json()
             if (response.ok) {
                 console.log('Setting workouts state with:', json);
-                setWorkouts(json)
+                dispatch({ type: 'SET_WORKOUTS', payload: json })
+                // setWorkouts(json)
             }
         }
         fetchWorkout()
@@ -19,6 +21,7 @@ const Home = () => {
     return (
         <div className="home">
             <div className="workouts">
+
                 {workouts && workouts.map((workout) => (
                     <WorkoutDetails key={workout._id} workout={workout} /> // nefhemha l faza hedhi 
                 ))}
@@ -27,6 +30,7 @@ const Home = () => {
         </div>
     )
 }
+
 //I will be creating a from in which I will take the info from the request sent by the client me instead of postman
 
 
