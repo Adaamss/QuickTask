@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useReducer } from "react";
 export const WorkoutsContext = createContext() // have the value that will be shared golabaly
 
 export const workoutsReducer = (state, action) => {

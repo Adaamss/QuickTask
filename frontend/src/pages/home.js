@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import WorkoutDetails from "../components/WorkoutsDetails"
 import WorkoutForm from "../components/WorkoutForm"
 import { useWorokoutsContext } from "../hooks/useWorkoutsContext"
@@ -17,7 +17,7 @@ const Home = () => {
             }
         }
         fetchWorkout()
-    }, []) //bug fix workouts changes every re-render[workouts]when workouts changes use effects triggers =>  workouts changes over and over with new data => triggering +oo 
+    }, [dispatch]) //bug fix workouts changes every re-render[workouts]when workouts changes use effects triggers =>  workouts changes over and over with new data => triggering +oo 
     return (
         <div className="home">
             <div className="workouts">
