@@ -122,3 +122,7 @@ div.succces {
   margin: 20px 0;
   font-weight: 500;
 }
+
+input.error {
+  border: 1px solid var(--error);
+}
