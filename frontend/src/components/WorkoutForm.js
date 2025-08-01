@@ -31,7 +31,7 @@ const WorkoutForm = () => {
         if (response.ok) {
             setTitle('')
             setLoad('')
-            setReps('')
+            setReps('') // this could be chnaged to form state setting
             setError(null)
             setSuccess(true)
             setEmptyFields([])
