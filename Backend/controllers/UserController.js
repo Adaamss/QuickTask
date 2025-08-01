@@ -23,9 +23,15 @@ const signupUser = async (req, res) => { //Ie; Register
     console.log(email)
     console.log(password)
     console.log(req.body)
-    const register = await User.signup(email, password)
-    console.log(register)
-    res.json({ register, mess: "cool" })
+    try {
+        const user = await User.signup(email, password)
+        res.status(200).json({ user, email })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+
+
 }
 
 
