@@ -1,8 +1,22 @@
 const mongoose = require('mongoose')
 const User = require('../models/UserModel')
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
+function generateToken(user) { //my way
+    const secretKey = process.env.JWT_SECRET
+    console.log(user._id.toJSON(), user._id) // diff in passing objects insid eteh jwt.sign
+    const token = jwt.sign({ id: user._id.toJSON() }, secretKey, { expiresIn: 60 * 60 })
+    console.log(token)
+    return token
+}
 
+function createToken(_id) {
+    const secretKey = process.env.JWT_SECRET
+    const tokenCreated = jwt.sign({ _id }, secretKey, { expiresIn: '1d' })
+    return tokenCreated
+}
 
 
 const loginUser = async (req, res) => {
@@ -20,12 +34,17 @@ const signupUser = async (req, res) => { //Ie; Register
     // const user = await User.create({ email, password: hashedPassword })
     // res.json(user)
     const { email, password } = req.body
-    console.log(email)
-    console.log(password)
-    console.log(req.body)
+
     try {
         const user = await User.signup(email, password)
-        res.status(200).json({ user, email })
+
+        const token = createToken(user._id)
+
+        // const authtoken = generateToken(user); //  Myway
+        console.log(user)
+        res.status(201).json({ token, email })
+
+
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
