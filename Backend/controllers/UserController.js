@@ -4,47 +4,44 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-function generateToken(user) { //my way
-    const secretKey = process.env.JWT_SECRET
-    console.log(user._id.toJSON(), user._id) // diff in passing objects insid eteh jwt.sign
-    const token = jwt.sign({ id: user._id.toJSON() }, secretKey, { expiresIn: 60 * 60 })
-    console.log(token)
-    return token
-}
 
+//token generation
 function createToken(_id) {
     const secretKey = process.env.JWT_SECRET
     const tokenCreated = jwt.sign({ _id }, secretKey, { expiresIn: '1d' })
     return tokenCreated
 }
 
-
 const loginUser = async (req, res) => {
-    // const { email, password } = req.body // jibli el password wel amil mel request 7othom fel email wel password
-    // const hashedPassword = await bcrypt.hash(password, 10) //hash the pass wait for it until it finishses and than we move to the next
-    // const user = await User.create({ email, password: hashedPassword })
-    // res.status(200).json(user)
+    const { email, password } = req.body
+    try {
+        const user = await User.findOne({ email })
+        //find the user
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+        const isSamePassword = await bcrypt.compare(password, user.password)
+        if (!isSamePassword) {
+            return res.status(400).json({ message: 'Invalid password' });
+        }
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ token, message: "loggedin" })
 
+
+    } catch (error) {
+
+        res.status(500).json({ message: 'Server error' });
+    }
 
 }
 
 const signupUser = async (req, res) => { //Ie; Register
-    // const { email, password } = req.body
-    // const hashedPassword = await bcrypt.hash(password, 10)
-    // const user = await User.create({ email, password: hashedPassword })
-    // res.json(user)
     const { email, password } = req.body
-
     try {
         const user = await User.signup(email, password)
-
         const token = createToken(user._id)
-
-        // const authtoken = generateToken(user); //  Myway
         console.log(user)
         res.status(201).json({ token, email })
-
-
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
