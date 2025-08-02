@@ -4,7 +4,7 @@ import { useContext } from "react";
 export const useWorokoutsContext = () => {
     const context = useContext(WorkoutsContext)
     if (!context) {
-        throw Error('test')
+        throw Error('useWorkoutsContext must be used inside a WorkoutsContextProvider"')
     }
     return context
 }

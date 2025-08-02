@@ -9,7 +9,7 @@ const WorkoutDetails = ({ workout }) => {
         })
         const json = await response.json()
         if (response.ok) {
-            dispatch({ type: 'DELETE_WORKOUT', payload: json })
+            dispatch({ type: 'DELETE_WORKOUT', payload: json }) // ie: workout from DB change the state using dispatch
         }
 
     }

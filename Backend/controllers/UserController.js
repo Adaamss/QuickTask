@@ -17,24 +17,22 @@ const loginUser = async (req, res) => {
     try {
         const user = await User.findOne({ email })
         //find the user
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid credentials' });
+        if (!user.email) {
+            return res.status(400).json({ message: 'Invalid email' });
         }
         const isSamePassword = await bcrypt.compare(password, user.password)
         if (!isSamePassword) {
             return res.status(400).json({ message: 'Invalid password' });
         }
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(200).json({ token, message: "loggedin" })
+        const token = createToken(user._id)
+        res.status(201).json({ token, message: "loggedin" })
 
 
     } catch (error) {
 
         res.status(500).json({ message: 'Server error' });
     }
-
 }
-
 const signupUser = async (req, res) => { //Ie; Register
     const { email, password } = req.body
     try {

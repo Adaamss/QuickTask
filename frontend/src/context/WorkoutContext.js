@@ -1,15 +1,18 @@
 import { createContext, useReducer } from "react";
 export const WorkoutsContext = createContext() // have the value that will be shared golabaly
 
+// dipatch takes action as paramter dipatch(action) & action is {type,payload}
+// the action is an object {type and payload} 
+
 export const workoutsReducer = (state, action) => {
     switch (action.type) {
-        case 'SET_WORKOUTS':
+        case 'SET_WORKOUTS': // this 
             return {
-                workouts: action.payload // expcted to be an array 
+                workouts: action.payload // expcted to be an array caus eth api return and array
             }
         case 'CREATE_WORKOUTS':
             return {
-                workouts: [action.payload, ...state.workouts] // exptected to be 1 new workout
+                workouts: [action.payload, ...state.workouts] // exptected to be 1 new workout cause the api's payload have 1 item to add + 
             }
         case 'DELETE_WORKOUT':
             return {
@@ -25,8 +28,7 @@ export const workoutsReducer = (state, action) => {
 
 export const WorkoutsContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(workoutsReducer, { workouts: null }) // change the state using the dispatch function and this is { workouts: null } teh intial value 
-
-    // dispatch({ type: 'SET_WORKOUTS', payload:}) // when we call the dispatch fucntion n3atou lel workoutsReducer
+    // the dispatch function takes as paramter an object which have a type and a payload
 
     return (
         <WorkoutsContext.Provider value={{ ...state, dispatch }} >
