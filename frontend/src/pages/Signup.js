@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useSignup } from "../hooks/useSignup"
 
 const Signup = () => {
-    const { signup, error, isLoading } = useSignup()
+    const { signup, error, isLoading, succes } = useSignup()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -27,7 +27,8 @@ const Signup = () => {
                 value={password}
             />
             <button disabled={isLoading}>Signup</button>
-            {error && <div className="error">{error}</div>}
+            {error ? <div className="error">{error}</div> : succes && <div className="succces">Signed UP succsefully</div>}
+
         </form>
     )
 }

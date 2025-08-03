@@ -1,17 +1,17 @@
-import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useState } from "react";
 
-export const useSignup = () => {
+export const useLogin = () => {
+    // const { dispatch } = AuthContext wrong to know hwy
+    const { dispatch } = useAuthContext()
     const [error, setError] = useState(null)
     const [isLoading, setisLoading] = useState(null)
-    const { dispatch } = useAuthContext()
     const [succes, setSucces] = useState(null)
 
-
-    const signup = async (email, password) => {
+    const login = async (email, password) => {
         setError(null)
         setisLoading(true)
-        const response = await fetch('/api/user/signup', {
+        const response = await fetch('/api/user/login', {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -32,6 +32,7 @@ export const useSignup = () => {
             setSucces(true)
         }
     }
-    return { signup, error, isLoading, succes }
+    return { login, error, isLoading, succes }
+
 
 }

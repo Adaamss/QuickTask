@@ -20,7 +20,6 @@ export const AuthReducer = (state, action) => { //login and logout
 
 }
 
-
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, { user: null })
     console.log("auth context", state)

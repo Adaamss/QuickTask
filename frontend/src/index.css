@@ -111,6 +111,16 @@ div.error {
   margin: 20px 0;
 }
 
+div.succces {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 4px;
+  margin: 20px 0;
+
+}
+
 input.error {
   border: 1px solid var(--error);
 }
