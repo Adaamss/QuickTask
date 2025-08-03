@@ -3,7 +3,9 @@ import Home from './pages/home'
 import NavBar from './components/NavBar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import { useAuthContext } from './hooks/useAuthContext';
 function App() {
+  // const { user } = useAuthContext() // front end check !! only weak security user &&
   return (
     <div className="App">
       <BrowserRouter>
@@ -14,7 +16,7 @@ function App() {
               path="/"
               element={<Home />}
             />
-            <Route
+            < Route
               path="/login"
               element={<Login />}
             />

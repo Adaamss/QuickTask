@@ -6,7 +6,10 @@ const userRoutes = require('../Backend/routes/user')
 
 const app = express()
 
-//middlewares
+// check if there's a token and check if that token is valid
+
+
+//middlewares are like checkpoint for each  request
 app.use(express.json())
 
 app.use((req, res, next) => {
