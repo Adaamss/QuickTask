@@ -27,7 +27,7 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ error: 'Invalid password' });
         }
         const token = createToken(user._id)
-        res.status(201).json({ token, message: "loggedin" })
+        res.status(201).json({ email, token, message: "loggedin" })
 
 
     } catch (error) {
