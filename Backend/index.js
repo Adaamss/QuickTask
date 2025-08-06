@@ -3,8 +3,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const workoutsRoutes = require('./routes/workouts')
 const userRoutes = require('../Backend/routes/user')
+const cors = require('cors');
+
 
 const app = express()
+app.use(cors());
 
 // check if there's a token and check if that token is valid
 
