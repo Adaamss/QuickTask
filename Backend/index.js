@@ -26,6 +26,10 @@ app.use('/api/workouts', workoutsRoutes)
 
 app.use('/api/user', userRoutes)
 
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok', time: new Date().toISOString() });
+});
+
 
 //COnnect to database
 mongoose.connect(process.env.MONGO_URI)
