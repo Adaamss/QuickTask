@@ -7,11 +7,13 @@ export const useLogin = () => {
     const [error, setError] = useState(null)
     const [isLoading, setisLoading] = useState(null)
     const [succes, setSucces] = useState(null)
+    const apiUrl = process.env.REACT_APP_API_URL;
+
 
     const login = async (email, password) => {
         setError(null)
         setisLoading(true)
-        const response = await fetch('/api/user/login', {
+        const response = await fetch(`${apiUrl}/api/user/login`, {
             headers: {
                 'Content-Type': 'application/json'
             },
