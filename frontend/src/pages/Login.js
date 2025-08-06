@@ -12,24 +12,52 @@ const Login = () => {
     }
 
     return (
-        <form className="login" onSubmit={handlelogin}>
-            <h3>login</h3>
-            <label>Email </label>
-            <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-            />
-            <label>Password </label>
-            <input
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-            />
-            <button disabled={isLoading}>Login</button>
-            {error ? <div className="error">{error}</div> : succes && <div className="succces">Logged in succsefully</div>}
-
-        </form>
+        <div className="auth-container">
+            <div className="auth-card">
+                <div className="auth-header">
+                    <div className="auth-icon">🏋️</div>
+                    <h2 className="auth-title">Welcome Back</h2>
+                    <p className="auth-subtitle">Continue your fitness journey</p>
+                </div>
+                <form className="auth-form login" onSubmit={handlelogin}>
+                    <div className="input-group">
+                        <label className="input-label">Email Address</label>
+                        <input
+                            type="email"
+                            className="modern-input"
+                            placeholder="Enter your email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                        />
+                    </div>
+                    <div className="input-group">
+                        <label className="input-label">Password</label>
+                        <input
+                            type="password"
+                            className="modern-input"
+                            placeholder="Enter your password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                        />
+                    </div>
+                    <button className="auth-button" disabled={isLoading}>
+                        {isLoading ? (
+                            <span className="loading-spinner">⏳</span>
+                        ) : (
+                            <>
+                                <span className="btn-icon">🔑</span>
+                                Login
+                            </>
+                        )}
+                    </button>
+                    {error && <div className="error-message">{error}</div>}
+                    {succes && <div className="success-message">Logged in successfully! 🎉</div>}
+                </form>
+                <div className="auth-footer">
+                    <p>Don't have an account? <a href="/signup" className="auth-link-text">Sign up here</a></p>
+                </div>
+            </div>
+        </div>
     )
 }
 export default Login

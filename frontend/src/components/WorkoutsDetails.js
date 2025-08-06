@@ -23,14 +23,28 @@ const WorkoutDetails = ({ workout }) => {
     }
 
     return (
-        <div className="workout-details">
-            <h4>{workout.title}</h4>
-            <p><strong> Load (kg): </strong>{workout.load}</p>
-            <p><strong> Reps : </strong>{workout.reps}</p>
-            <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
-            <span className="material-symbols-outlined" onClick={handleClick}> Delete </span>
+        <div className="workout-card">
+            <div className="workout-header">
+                <h4 className="workout-title">{workout.title}</h4>
+                <button className="delete-btn" onClick={handleClick} title="Delete workout">
+                    ❌
+                </button>
+            </div>
+            <div className="workout-time">
+                {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
+            </div>
+            <div className="workout-stats">
+                <div className="stat-item load">
+                    <span className="stat-label">Load:</span>
+                    <span className="stat-value">{workout.load} kg</span>
+                </div>
+                <div className="stat-item reps">
+                    <span className="stat-label">Reps:</span>
+                    <span className="stat-value">{workout.reps}</span>
+                </div>
+            </div>
         </div>
     )
 }
 
-export default WorkoutDetails 
+export default WorkoutDetails

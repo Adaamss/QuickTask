@@ -44,60 +44,42 @@ const WorkoutForm = () => {
             setEmptyFields([])
             console.log('new workout Added', json)
             dispatch({ type: 'CREATE_WORKOUTS', payload: json })
-            // Clear success message after 3 seconds
-            setTimeout(() => setSuccess(false), 3000)
         }
     }
 
+
+
     return (
         <form className="create" onSubmit={handleSubmit}>
-            <div className="form-header">
-                <h3>Add New Workout</h3>
-                <p className="form-subtitle">Track your exercise progress</p>
-            </div>
+            <h3>Add a new workout</h3>
+            <label>Exercice title</label>
+            <input type="text"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                className={emptyFields.includes('title') ? 'error' : ''}
 
-            <div className="input-group">
-                <label className="input-label">Exercise Title</label>
-                <input
-                    type="text"
-                    className={`modern-input ${emptyFields.includes('title') ? 'error' : ''}`}
-                    placeholder="e.g., Bench Press"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                />
-            </div>
+            />
+            <label>Exercice Load in KG </label>
+            <input type="text"
+                onChange={(e) => setLoad(e.target.value)}
+                value={load}
+                className={emptyFields.includes('load') ? 'error' : ''}
 
-            <div className="input-group">
-                <label className="input-label">Load (kg)</label>
-                <input
-                    type="number"
-                    className={`modern-input ${emptyFields.includes('load') ? 'error' : ''}`}
-                    placeholder="e.g., 80"
-                    onChange={(e) => setLoad(e.target.value)}
-                    value={load}
-                />
-            </div>
 
-            <div className="input-group">
-                <label className="input-label">Repetitions</label>
-                <input
-                    type="number"
-                    className={`modern-input ${emptyFields.includes('reps') ? 'error' : ''}`}
-                    placeholder="e.g., 10"
-                    onChange={(e) => setReps(e.target.value)}
-                    value={reps}
-                />
-            </div>
+            />
+            <label>Exercice reps</label>
+            <input type="text"
+                onChange={(e) => setReps(e.target.value)}
+                value={reps}
+                className={emptyFields.includes('reps') ? 'error' : ''}
 
-            <button type="submit">
-                Add Workout
-            </button>
-
-            {error && <div className="error-message">{error}</div>}
-            {success && <div className="success-message">Workout added successfully!</div>}
+            />
+            <button>Add the workout</button>
+            {error ? <div className="error"> {error}</div> : success && <div className="succces">Workout added succsefully</div>}
         </form>
 
     )
 }
 
 export default WorkoutForm
+

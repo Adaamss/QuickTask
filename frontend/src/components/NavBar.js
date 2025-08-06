@@ -11,15 +11,25 @@ const NavBar = () => {
         logout()
     }
     return (
-        <header>
-
-            <div className="container">
-                <Link to="/"> Workout Buddy</Link>
-                <nav>
+        <header className="modern-header">
+            <div className="nav-container">
+                <Link to="/" className="logo-link">
+                    <div className="logo">
+                        <span className="logo-icon">💪</span>
+                        <span className="logo-text">Workout Buddy</span>
+                    </div>
+                </Link>
+                <nav className="nav-menu">
                     {user && ( // when its null we get a null error
-                        <div>
-                            <span>{user.email}</span>
-                            <button onClick={handleClick}>
+                        <div className="user-section">
+                            <div className="user-info">
+                                <div className="user-avatar">
+                                    {user.email.charAt(0).toUpperCase()}
+                                </div>
+                                <span className="user-email">{user.email}</span>
+                            </div>
+                            <button className="logout-btn" onClick={handleClick}>
+                                <span className="btn-icon">🚪</span>
                                 Logout
                             </button>
                         </div>
@@ -27,10 +37,9 @@ const NavBar = () => {
 
                     }
                     {!user && (
-                        <div>
-                            <Link to="/login">Login</Link>
-                            <Link to="/signup">Signup</Link>
-
+                        <div className="auth-links">
+                            <Link to="/login" className="auth-link login-link">Login</Link>
+                            <Link to="/signup" className="auth-link signup-link">Sign Up</Link>
                         </div>
                     )}
 

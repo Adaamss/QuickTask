@@ -28,29 +28,14 @@ const Home = () => {
         }
     }, [dispatch, user]) //bug fix workouts changes every re-render[workouts]when workouts changes use effects triggers =>  workouts changes over and over with new data => triggering +oo 
     return (
-        <div className="home-container">
-            <div className="home-header">
-                <h1 className="home-title">Your Workouts</h1>
-                <p className="home-subtitle">Track your fitness journey</p>
+        <div className="home">
+            <div className="workouts">
+
+                {workouts && workouts.map((workout) => (
+                    <WorkoutDetails key={workout._id} workout={workout} /> // nefhemha l faza hedhi 
+                ))}
             </div>
-            <div className="home">
-                <div className="workouts-grid">
-                    {workouts && workouts.length > 0 ? (
-                        workouts.map((workout) => (
-                            <WorkoutDetails key={workout._id} workout={workout} />
-                        ))
-                    ) : (
-                        <div className="no-workouts">
-                            <div className="no-workouts-icon">💪</div>
-                            <h3>No workouts yet</h3>
-                            <p>Add your first workout to get started!</p>
-                        </div>
-                    )}
-                </div>
-                <div className="form-sidebar">
-                    <WorkoutForm />
-                </div>
-            </div>
+            <WorkoutForm />
         </div>
     )
 }
