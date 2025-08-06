@@ -2,13 +2,20 @@ import { useEffect } from "react"
 import WorkoutDetails from "../components/WorkoutsDetails"
 import WorkoutForm from "../components/WorkoutForm"
 import { useWorokoutsContext } from "../hooks/useWorkoutsContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const Home = () => {
+    const { user } = useAuthContext()
     const { workouts, dispatch } = useWorokoutsContext()
     // const [workouts, setWorkouts] = useState(null)
     useEffect(() => {
         const fetchWorkout = async () => {
-            const response = await fetch('/api/workouts/') // by default it's GET so we don't do shit leave it to beaver
+            const response = await fetch('/api/workouts/',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
+                }) // by default it's GET so we don't do shit leave it to beaver
             const json = await response.json()
             if (response.ok) {
                 console.log('Setting workouts state with:', json);
@@ -16,8 +23,10 @@ const Home = () => {
                 // setWorkouts(json)
             }
         }
-        fetchWorkout()
-    }, [dispatch]) //bug fix workouts changes every re-render[workouts]when workouts changes use effects triggers =>  workouts changes over and over with new data => triggering +oo 
+        if (user) {
+            fetchWorkout()
+        }
+    }, [dispatch, user]) //bug fix workouts changes every re-render[workouts]when workouts changes use effects triggers =>  workouts changes over and over with new data => triggering +oo 
     return (
         <div className="home">
             <div className="workouts">
