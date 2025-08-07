@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useSignup } from "../hooks/useSignup"
+import { Navigate } from "react-router-dom"
+
 
 const Signup = () => {
     const { signup, error, isLoading, succes } = useSignup()
@@ -54,7 +56,7 @@ const Signup = () => {
                     {succes && <div className="success-message">Signed up successfully! 🎉</div>}
                 </form>
                 <div className="auth-footer">
-                    <p>Already have an account? <Navigate to="/login" className="auth-link-text" /> Login here</p>
+                    <p>Already have an accountss? <Navigate to="/login" className="auth-link-text" /> Loginss here</p>
                 </div>
             </div>
         </div >

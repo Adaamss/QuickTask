@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
+import { Navigate } from "react-router-dom"
 
 const Login = () => {
     const { login, error, isLoading, succes } = useLogin()
@@ -54,7 +55,7 @@ const Login = () => {
                     {succes && <div className="success-message">Logged in successfully! 🎉</div>}
                 </form>
                 <div className="auth-footer">
-                    <p>Don't have an account? <Navigate to="/signup" className="auth-link-text" /> Sign up here</p>
+                    <p>Don't have an accounts? <Navigate to="/signup" className="auth-link-text" /> Sign upssss here</p>
                 </div>
             </div>
         </div>
