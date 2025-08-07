@@ -62,7 +62,7 @@ const WorkoutForm = () => {
                 <label className="input-label">Exercise Title</label>
                 <input
                     type="text"
-                    className={`modern - input ${emptyFields.includes('title') ? 'error' : ''}`}
+                    className={`modern-input ${emptyFields.includes('title') ? 'error' : ''}`}
                     placeholder="e.g., Bench Press"
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
@@ -73,7 +73,7 @@ const WorkoutForm = () => {
                 <label className="input-label">Load (kg)</label>
                 <input
                     type="number"
-                    className={`modern - input ${emptyFields.includes('load') ? 'error' : ''}`}
+                    className={`modern-input ${emptyFields.includes('load') ? 'error' : ''}`}
                     placeholder="e.g., 80"
                     onChange={(e) => setLoad(e.target.value)}
                     value={load}
@@ -84,7 +84,7 @@ const WorkoutForm = () => {
                 <label className="input-label">Repetitions</label>
                 <input
                     type="number"
-                    className={`modern - input ${emptyFields.includes('reps') ? 'error' : ''}`}
+                    className={`modern-input ${emptyFields.includes('reps') ? 'error' : ''}`}
                     placeholder="e.g., 10"
                     onChange={(e) => setReps(e.target.value)}
                     value={reps}
