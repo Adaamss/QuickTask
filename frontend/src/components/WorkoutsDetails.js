@@ -6,7 +6,6 @@ const WorkoutDetails = ({ workout }) => {
     const { user } = useAuthContext()
     const { dispatch } = useWorokoutsContext()
     const apiUrl = process.env.REACT_APP_API_URL;
-    `${apiUrl}/api/user/login`
 
     const handleClick = async () => {
         if (!user) {
