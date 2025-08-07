@@ -9,9 +9,7 @@ const path = require('path')
 const app = express()
 app.use(cors())
 
-// check if there's a token and check if that token is valid
-
-//middlewares are like checkpoint for each request
+//middlewares are like checkpoints for each request
 app.use(express.json())
 
 app.use((req, res, next) => {
@@ -19,31 +17,29 @@ app.use((req, res, next) => {
     next()
 })
 
-//routes
+// API routes
 app.use('/api/workouts', workoutsRoutes)
 app.use('/api/user', userRoutes)
 
-// Serve React build static files
+// Serve static files from React frontend build folder
 const __dirnamePath = path.resolve()
 app.use(express.static(path.join(__dirnamePath, 'frontend', 'build')))
 
-// Other routes (non-API) serve React frontend index.html
+// All non-API GET requests handled by React Router
 app.get('*', (req, res) => {
     if (req.path.startsWith('/api')) {
-        // If route starts with /api and wasn't matched, send 404 JSON response
         return res.status(404).json({ error: 'API route not found' })
     }
-    // Otherwise serve React index.html for React Router to handle routing
     res.sendFile(path.join(__dirnamePath, 'frontend', 'build', 'index.html'))
 })
 
-//Connect to database
+// Connect to database and start server
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        app.listen(process.env.PORT, () => {
-            console.log(`Connected to DB Example app listening on port`, process.env.PORT)
+        app.listen(process.env.PORT || 4000, () => {
+            console.log(`Connected to DB and server listening on port ${process.env.PORT || 4000}`)
         })
     })
-    .catch((err) => {
-        console.log(err)
+    .catch(err => {
+        console.error('Database connection error:', err)
     })
