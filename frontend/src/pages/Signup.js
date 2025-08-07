@@ -54,10 +54,10 @@ const Signup = () => {
                     {succes && <div className="success-message">Signed up successfully! 🎉</div>}
                 </form>
                 <div className="auth-footer">
-                    <p>Already have an account? <a href="/login" className="auth-link-text">Login here</a></p>
+                    <p>Already have an account? <Navigate to="/login" className="auth-link-text" /> Login here</p>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
