@@ -1,0 +1,18 @@
+{
+    "routes": [
+        {
+            "match": "exact",
+            "route": "/health",
+            "status": 200
+        },
+        {
+            "match": "/api/*",
+            "status": 404
+        },
+        {
+            "match": "/*",
+            "serve": "/index.html",
+            "status": 200
+        }
+    ]
+}
