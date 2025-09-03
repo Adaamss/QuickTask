@@ -10,6 +10,10 @@ export const workoutsReducer = (state, action) => {
             return {
                 workouts: action.payload // expcted to be an array caus eth api return and array
             }
+        case 'EDIT WORKOUT':
+            return {
+                workouts: [action.payload, ...state.workout]
+            }
         case 'CREATE_WORKOUTS':
             return {
                 workouts: [action.payload, ...state.workouts] // exptected to be 1 new workout cause the api's payload have 1 item to add + 
