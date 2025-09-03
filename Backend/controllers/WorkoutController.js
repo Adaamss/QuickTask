@@ -19,6 +19,9 @@ const getOneWorkout = async (req, res) => {
     if (!workout) {
         return res.status(404).json({ error: 'no such workout exists' })
     }
+    if (!workout) {
+        return res.status(404).json({ error: 'no such workout exist' })
+    }
     res.status(200).json(workout)
 }
 

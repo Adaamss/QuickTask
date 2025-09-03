@@ -47,7 +47,7 @@ const WorkoutForm = () => {
             console.log('new workout Added', json)
             dispatch({ type: 'CREATE_WORKOUTS', payload: json })
             // Clear success message after 3 seconds
-            setTimeout(() => setSuccess(false), 3000)
+            setTimeout(() => setSuccess(false), 5000)
         }
     }
 
